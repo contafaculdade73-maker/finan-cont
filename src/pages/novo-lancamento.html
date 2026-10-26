@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Formulário de cadastro de novo lançamento financeiro no FinanCont.">
+  <title>FinanCont | Novo Lançamento</title>
+  <!-- Folha de estilo da página de novo lançamento -->
+  <link rel="stylesheet" href="../css/novo-lancamento.css">
+  <!-- Script com regras de validação e manipulação do formulário -->
+  <script src="../js/novo-lancamento.js" defer></script>
+</head>
+<body>
+  <div class="app-container">
+    <!-- Cabeçalho da página com identificação do sistema e navegação -->
+    <header class="page-header">
+      <div class="brand-group">
+        <a href="lancamentos.html" class="brand-mark" title="Ir para lançamentos" aria-label="FinanCont">FC</a>
+        <div>
+          <p class="eyebrow">FINANCONT • GESTÃO FINANCEIRA</p>
+          <h1 class="page-title">Novo Lançamento</h1>
+          <p class="subtitle">Preencha os campos abaixo para cadastrar uma receita ou despesa.</p>
+        </div>
+      </div>
+      <a href="lancamentos.html" class="btn-nav" id="btn-voltar">
+        <span aria-hidden="true">&larr;</span> Ver lançamentos
+      </a>
+    </header>
+
+    <main class="main-content">
+      <!-- Mensagem de sucesso (exibida dinamicamente via JavaScript) -->
+      <div id="mensagem-sucesso" class="alert-sucesso" role="status" aria-live="polite" hidden>
+        <div class="alert-icon" aria-hidden="true">&#10003;</div>
+        <div class="alert-body">
+          <h2 class="alert-title">Lançamento cadastrado com sucesso!</h2>
+          <p id="alert-detalhes" class="alert-text">Os dados foram registrados e exibidos no console.</p>
+        </div>
+        <button type="button" class="btn-fechar-alerta" id="btn-fechar-sucesso" aria-label="Fechar mensagem">&times;</button>
+      </div>
+
+      <!-- Card principal do formulário -->
+      <section class="card-formulario" aria-labelledby="form-titulo">
+        <div class="card-header">
+          <h2 id="form-titulo" class="card-title">Dados da Movimentação</h2>
+          <span class="required-legend">* Campos obrigatórios</span>
+        </div>
+
+        <form id="form-lancamento" class="formulario" novalidate>
+          
+          <!-- Campo 1: Tipo de Lançamento (Receita ou Despesa com radio buttons) -->
+          <fieldset class="campo-grupo fieldset-tipo" id="grupo-tipo">
+            <legend class="label">Tipo de lançamento <span class="required">*</span></legend>
+            <div class="radio-cards-container" role="radiogroup" aria-required="true" aria-describedby="erro-tipo">
+              <label class="radio-card radio-card-receita" for="tipo-receita">
+                <input type="radio" id="tipo-receita" name="tipo" value="receita">
+                <span class="radio-custom" aria-hidden="true"></span>
+                <span class="radio-icon" aria-hidden="true">&#8593;</span>
+                <span class="radio-text">
+                  <strong>Receita</strong>
+                  <small>Entrada de dinheiro</small>
+                </span>
+              </label>
+
+              <label class="radio-card radio-card-despesa" for="tipo-despesa">
+                <input type="radio" id="tipo-despesa" name="tipo" value="despesa">
+                <span class="radio-custom" aria-hidden="true"></span>
+                <span class="radio-icon" aria-hidden="true">&#8595;</span>
+                <span class="radio-text">
+                  <strong>Despesa</strong>
+                  <small>Saída de dinheiro</small>
+                </span>
+              </label>
+            </div>
+            <!-- Mensagem de erro em vermelho abaixo do campo -->
+            <span class="mensagem-erro" id="erro-tipo" aria-live="polite"></span>
+          </fieldset>
+
+          <!-- Campo 2: Descrição -->
+          <div class="campo-grupo">
+            <label for="descricao" class="label">Descrição <span class="required">*</span></label>
+            <input 
+              type="text" 
+              id="descricao" 
+              name="descricao" 
+              class="input-campo" 
+              placeholder="Ex.: Pagamento de fornecedor, Venda de consultoria..."
+              maxlength="150"
+              autocomplete="off"
+              aria-required="true"
+              aria-describedby="erro-descricao"
+            >
+            <!-- Mensagem de erro em vermelho abaixo do campo -->
+            <span class="mensagem-erro" id="erro-descricao" aria-live="polite"></span>
+          </div>
+
+          <!-- Linha com dois campos: Valor e Data -->
+          <div class="linha-dupla">
+            <!-- Campo 3: Valor (número maior que zero) -->
+            <div class="campo-grupo">
+              <label for="valor" class="label">Valor (R$) <span class="required">*</span></label>
+              <div class="input-moeda-wrapper">
+                <span class="prefixo-moeda" aria-hidden="true">R$</span>
+                <input 
+                  type="number" 
+                  id="valor" 
+                  name="valor" 
+                  class="input-campo input-com-prefixo" 
+                  placeholder="0,00" 
+                  step="0.01" 
+                  min="0.01"
+                  aria-required="true"
+                  aria-describedby="erro-valor"
+                >
+              </div>
+              <!-- Mensagem de erro em vermelho abaixo do campo -->
+              <span class="mensagem-erro" id="erro-valor" aria-live="polite"></span>
+            </div>
+
+            <!-- Campo 4: Data -->
+            <div class="campo-grupo">
+              <label for="data" class="label">Data <span class="required">*</span></label>
+              <input 
+                type="date" 
+                id="data" 
+                name="data" 
+                class="input-campo" 
+                aria-required="true"
+                aria-describedby="erro-data"
+              >
+              <!-- Mensagem de erro em vermelho abaixo do campo -->
+              <span class="mensagem-erro" id="erro-data" aria-live="polite"></span>
+            </div>
+          </div>
+
+          <!-- Linha com dois campos: Categoria e Status -->
+          <div class="linha-dupla">
+            <!-- Campo 5: Categoria (select) -->
+            <div class="campo-grupo">
+              <label for="categoria" class="label">Categoria <span class="required">*</span></label>
+              <div class="select-wrapper">
+                <select 
+                  id="categoria" 
+                  name="categoria" 
+                  class="input-campo select-campo"
+                  aria-required="true"
+                  aria-describedby="erro-categoria"
+                >
+                  <option value="" selected>Selecione uma categoria</option>
+                  <option value="Vendas">Vendas</option>
+                  <option value="Aluguel">Aluguel</option>
+                  <option value="Salários">Salários</option>
+                  <option value="Impostos">Impostos</option>
+                  <option value="Outros">Outros</option>
+                </select>
+              </div>
+              <!-- Mensagem de erro em vermelho abaixo do campo -->
+              <span class="mensagem-erro" id="erro-categoria" aria-live="polite"></span>
+            </div>
+
+            <!-- Campo 6: Status (pendente ou pago) -->
+            <div class="campo-grupo">
+              <label for="status" class="label">Status <span class="required">*</span></label>
+              <div class="select-wrapper">
+                <select 
+                  id="status" 
+                  name="status" 
+                  class="input-campo select-campo"
+                  aria-required="true"
+                  aria-describedby="erro-status"
+                >
+                  <option value="pendente" selected>Pendente</option>
+                  <option value="pago">Pago</option>
+                </select>
+              </div>
+              <!-- Mensagem de erro em vermelho abaixo do campo -->
+              <span class="mensagem-erro" id="erro-status" aria-live="polite"></span>
+            </div>
+          </div>
+
+          <!-- Ações do formulário -->
+          <div class="acoes-formulario">
+            <button type="button" id="btn-limpar" class="btn btn-secundario">
+              Limpar
+            </button>
+            <button type="submit" id="btn-salvar" class="btn btn-primario">
+              Salvar Lançamento
+            </button>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <!-- Rodapé informativo -->
+    <footer class="page-footer">
+      <p>FinanCont &bull; Formulário em HTML, CSS e JavaScript puro</p>
+    </footer>
+  </div>
+</body>
+</html>
