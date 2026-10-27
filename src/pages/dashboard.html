@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Dashboard do FinanCont - Resumo e visão geral da situação financeira.">
+  <title>FinanCont | Dashboard</title>
+  <link rel="stylesheet" href="../css/base.css">
+  <style>
+    /* Estilos do Dashboard integrado ao FinanCont */
+    .dashboard-container {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 32px 0 60px;
+    }
+
+    .dashboard-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 32px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #E5E7EB;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-badge {
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--azul);
+      color: #fff;
+      font-weight: 800;
+      font-size: 1.1rem;
+    }
+
+    .brand-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--azul);
+    }
+
+    .user-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .user-greeting {
+      font-size: 0.925rem;
+      color: #4B5563;
+    }
+
+    .user-greeting strong {
+      color: var(--azul);
+    }
+
+    .btn-sair {
+      padding: 8px 16px;
+      font-size: 0.875rem;
+      background: transparent;
+      color: var(--vermelho);
+      border: 1.5px solid var(--vermelho);
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .btn-sair:hover {
+      background: var(--vermelho);
+      color: #fff;
+    }
+
+    .dash-header {
+      margin-bottom: 28px;
+    }
+
+    .dash-header h1 {
+      font-size: 1.85rem;
+      color: var(--azul);
+      letter-spacing: -0.03em;
+      margin-bottom: 6px;
+    }
+
+    .dash-header p {
+      color: #6B7280;
+      font-size: 0.975rem;
+    }
+
+    .cards-resumo {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+      margin-bottom: 36px;
+    }
+
+    .card-resumo {
+      padding: 24px;
+      border-radius: 16px;
+      background: #FFFFFF;
+      border: 1px solid #E5E7EB;
+      box-shadow: 0 8px 24px rgb(15 23 42 / 5%);
+    }
+
+    .card-rotulo {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #6B7280;
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .card-icone {
+      font-size: 1.25rem;
+    }
+
+    .card-valor {
+      font-size: 1.75rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .card-valor.positivo {
+      color: var(--verde);
+    }
+
+    .card-valor.negativo {
+      color: var(--vermelho);
+    }
+
+    .card-valor.destaque {
+      color: var(--azul);
+    }
+
+    .dash-acoes {
+      padding: 32px;
+      border-radius: 16px;
+      background: #FFFFFF;
+      border: 1px solid #E5E7EB;
+      box-shadow: 0 8px 24px rgb(15 23 42 / 5%);
+    }
+
+    .dash-acoes h2 {
+      font-size: 1.25rem;
+      color: var(--azul);
+      margin-bottom: 12px;
+    }
+
+    .dash-acoes p {
+      color: #6B7280;
+      margin-bottom: 20px;
+      max-width: 600px;
+    }
+
+    .botoes-grupo {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 768px) {
+      .cards-resumo {
+        grid-template-columns: 1fr;
+      }
+      .dashboard-topbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+      }
+      .user-actions {
+        width: 100%;
+        justify-content: space-between;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard-container">
+    <header class="dashboard-topbar">
+      <div class="brand-group">
+        <div class="brand-badge">FC</div>
+        <span class="brand-title">FinanCont</span>
+      </div>
+      <div class="user-actions">
+        <span class="user-greeting">Conectado como: <strong>Administrador</strong> (admin@financont.com)</span>
+        <a href="login.html" class="btn-sair" id="btn-sair">Sair</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="dash-header">
+        <h1>Dashboard Financeiro</h1>
+        <p>Visão geral da sua saúde financeira e indicadores principais.</p>
+      </section>
+
+      <section class="cards-resumo" aria-label="Resumo Financeiro">
+        <article class="card-resumo">
+          <div class="card-rotulo">
+            <span>Saldo Atual</span>
+            <span class="card-icone" aria-hidden="true">💰</span>
+          </div>
+          <div class="card-valor destaque">R$ 14.850,00</div>
+        </article>
+
+        <article class="card-resumo">
+          <div class="card-rotulo">
+            <span>Total de Receitas (Mês)</span>
+            <span class="card-icone" aria-hidden="true">📈</span>
+          </div>
+          <div class="card-valor positivo">R$ 22.300,00</div>
+        </article>
+
+        <article class="card-resumo">
+          <div class="card-rotulo">
+            <span>Total de Despesas (Mês)</span>
+            <span class="card-icone" aria-hidden="true">📉</span>
+          </div>
+          <div class="card-valor negativo">R$ 7.450,00</div>
+        </article>
+      </section>
+
+      <section class="dash-acoes">
+        <h2>Atalhos Rápidos</h2>
+        <p>Gerencie suas movimentações financeiras com facilidade acessando as seções completas do sistema.</p>
+        <div class="botoes-grupo">
+          <a class="btn btn-primary" href="lancamentos.html">Ver Lançamentos</a>
+          <a class="btn btn-primary" style="background:#4B5563;" href="../../index.html">Página Inicial</a>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    // Recupera dados da sessão caso existam
+    try {
+      const sessao = JSON.parse(sessionStorage.getItem('financont_usuario'));
+      if (sessao && sessao.nome) {
+        document.querySelector('.user-greeting').innerHTML = `Conectado como: <strong>${sessao.nome}</strong> (${sessao.email})`;
+      }
+    } catch (e) {}
+
+    // Botão Sair limpa a sessão e redireciona para o login
+    document.getElementById('btn-sair').addEventListener('click', (e) => {
+      e.preventDefault();
+      try { sessionStorage.removeItem('financont_usuario'); } catch (err) {}
+      window.location.href = 'login.html';
+    });
+  </script>
+</body>
+</html>
