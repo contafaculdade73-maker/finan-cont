@@ -95,15 +95,15 @@ function atualizarIndicadores() {
 
   // Atualiza barra de balanço financeiro
   const totalGeral = receitasPagas + despesasPagas;
-  const pctReceitas = totalGeral > 0 ? (receitasPagas / totalGeral) * 100 : 50;
-  const pctDespesas = totalGeral > 0 ? (despesasPagas / totalGeral) * 100 : 50;
+  const pctReceitas = totalGeral > 0 ? (receitasPagas / totalGeral) * 100 : 0;
+  const pctDespesas = totalGeral > 0 ? (despesasPagas / totalGeral) * 100 : 0;
 
   document.querySelector("#bar-receitas").style.width = `${pctReceitas}%`;
   document.querySelector("#bar-despesas").style.width = `${pctDespesas}%`;
   document.querySelector("#legend-receitas-total").textContent = formatarMoeda.format(receitasPagas);
   document.querySelector("#legend-despesas-total").textContent = formatarMoeda.format(despesasPagas);
 
-  const taxaPoupanca = totalGeral > 0 ? ((saldoAtual / receitasPagas) * 100).toFixed(1) : 0;
+  const taxaPoupanca = receitasPagas > 0 ? ((saldoAtual / receitasPagas) * 100).toFixed(1) : "0.0";
   document.querySelector("#taxa-poupanca").textContent = `Margem líquida: ${taxaPoupanca}%`;
 }
 
@@ -115,6 +115,33 @@ function renderizarContasVencer() {
   const contasVencer = lancamentos
     .filter((item) => item.tipo === "despesa" && item.status === "pendente")
     .sort((a, b) => a.data.localeCompare(b.data));
+
+  const hoje = obterHojeISO();
+  const atrasadas = contasVencer.filter((item) => item.data < hoje).length;
+  const badge = document.querySelector("#badge-atencao");
+  if (badge) {
+    if (atrasadas > 0) {
+      badge.textContent = `${atrasadas} em atraso`;
+      badge.className = "total-badge badge-warning";
+    } else if (contasVencer.length > 0) {
+      badge.textContent = `${contasVencer.length} a vencer`;
+      badge.className = "total-badge";
+    } else {
+      badge.textContent = "Tudo em dia";
+      badge.className = "total-badge badge-success";
+    }
+  }
+
+  if (contasVencer.length === 0) {
+    const tr = document.createElement("tr");
+    const td = document.createElement("td");
+    td.colSpan = 4;
+    td.className = "empty-table-cell";
+    td.textContent = "Nenhuma conta pendente ou em atraso.";
+    tr.appendChild(td);
+    tabela.appendChild(tr);
+    return;
+  }
 
   contasVencer.forEach((item) => {
     const tr = document.createElement("tr");
@@ -131,10 +158,10 @@ function renderizarContasVencer() {
     tdValor.textContent = formatarMoeda.format(item.valor);
 
     const tdStatus = document.createElement("td");
-    const badge = document.createElement("span");
-    badge.className = `status-badge ${status.classe}`;
-    badge.textContent = status.texto;
-    tdStatus.appendChild(badge);
+    const badgeStatus = document.createElement("span");
+    badgeStatus.className = `status-badge ${status.classe}`;
+    badgeStatus.textContent = status.texto;
+    tdStatus.appendChild(badgeStatus);
 
     tr.append(tdDesc, tdData, tdValor, tdStatus);
     tabela.appendChild(tr);
@@ -149,6 +176,17 @@ function renderizarUltimosLancamentos() {
   const ultimos = [...lancamentos]
     .sort((a, b) => b.data.localeCompare(a.data))
     .slice(0, 6);
+
+  if (ultimos.length === 0) {
+    const tr = document.createElement("tr");
+    const td = document.createElement("td");
+    td.colSpan = 4;
+    td.className = "empty-table-cell";
+    td.textContent = "Nenhum lançamento registrado.";
+    tr.appendChild(td);
+    tabela.appendChild(tr);
+    return;
+  }
 
   ultimos.forEach((item) => {
     const tr = document.createElement("tr");

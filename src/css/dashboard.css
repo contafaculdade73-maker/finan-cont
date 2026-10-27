@@ -301,6 +301,12 @@ h1 {
   color: #B45309;
 }
 
+.badge-success {
+  border-color: #BBF7D0;
+  background: var(--sucesso-fundo);
+  color: var(--receita);
+}
+
 /* Barra de Balanço Financeiro */
 .progress-bar-wrapper {
   margin-top: 10px;
@@ -405,6 +411,13 @@ h1 {
 
 .compact-table tr:last-child td {
   border-bottom: none;
+}
+
+.empty-table-cell {
+  text-align: center;
+  color: var(--texto-suave);
+  padding: 24px 12px;
+  font-style: italic;
 }
 
 .compact-table th.numeric,
