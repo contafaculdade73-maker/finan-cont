@@ -1,0 +1,602 @@
+/* ==========================================================================
+   FinanCont - Estilos do Formulário de Novo Lançamento
+   Cores padrão:
+   - Azul: #1E3A8A
+   - Verde: #16A34A
+   - Vermelho: #DC2626
+   - Fundo: #F3F4F6
+   ========================================================================== */
+
+/* Variáveis de cores e configurações do design system */
+:root {
+  --azul: #1E3A8A;
+  --azul-escuro: #172554;
+  --azul-claro: #EFF6FF;
+  --azul-borda: #BFDBFE;
+  --verde: #16A34A;
+  --verde-claro: #DCFCE7;
+  --verde-escuro: #15803D;
+  --vermelho: #DC2626;
+  --vermelho-claro: #FEE2E2;
+  --vermelho-escuro: #991B1B;
+  --fundo: #F3F4F6;
+  --branco: #FFFFFF;
+  --texto: #111827;
+  --texto-suave: #6B7280;
+  --borda: #D1D5DB;
+  --borda-foco: #1E3A8A;
+  --sombra: 0 12px 32px rgba(15, 23, 42, 0.08);
+  --sombra-card: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  --raio: 12px;
+  --transicao: all 0.2s ease-in-out;
+}
+
+/* Reset básico e tipografia */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--fundo);
+  color: var(--texto);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.5;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Estrutura principal da página */
+.app-container {
+  width: min(780px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 36px 0 48px;
+}
+
+/* Cabeçalho da página */
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+
+.brand-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background-color: var(--azul);
+  color: var(--branco);
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  text-decoration: none;
+  box-shadow: 0 6px 16px rgba(30, 58, 138, 0.25);
+  transition: var(--transicao);
+}
+
+.brand-mark:hover {
+  transform: translateY(-2px);
+  background-color: var(--azul-escuro);
+}
+
+.eyebrow {
+  color: var(--azul);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.page-title {
+  color: var(--azul);
+  font-size: clamp(1.5rem, 3.5vw, 2rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+}
+
+.subtitle {
+  color: var(--texto-suave);
+  font-size: 0.95rem;
+}
+
+/* Botão de navegação para voltar */
+.btn-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border: 1px solid var(--borda);
+  border-radius: 10px;
+  background-color: var(--branco);
+  color: var(--azul);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  box-shadow: var(--sombra-card);
+  transition: var(--transicao);
+}
+
+.btn-nav:hover {
+  background-color: var(--azul-claro);
+  border-color: var(--azul-borda);
+  transform: translateX(-2px);
+}
+
+/* Alerta de Sucesso */
+.alert-sucesso {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 20px;
+  margin-bottom: 24px;
+  border: 1px solid var(--verde);
+  border-left: 6px solid var(--verde);
+  border-radius: var(--raio);
+  background-color: var(--verde-claro);
+  box-shadow: 0 4px 14px rgba(22, 163, 74, 0.15);
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.alert-icon {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: var(--verde);
+  color: var(--branco);
+  font-size: 1rem;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.alert-body {
+  flex: 1;
+}
+
+.alert-title {
+  color: var(--verde-escuro);
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.alert-text {
+  color: #166534;
+  font-size: 0.9rem;
+}
+
+.btn-fechar-alerta {
+  background: none;
+  border: none;
+  color: var(--verde-escuro);
+  font-size: 1.4rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0 4px;
+  border-radius: 4px;
+  transition: var(--transicao);
+}
+
+.btn-fechar-alerta:hover {
+  background-color: rgba(22, 163, 74, 0.2);
+}
+
+/* Card do Formulário */
+.card-formulario {
+  background-color: var(--branco);
+  border-radius: 18px;
+  border: 1px solid rgba(229, 231, 235, 0.9);
+  box-shadow: var(--sombra);
+  padding: 32px;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 26px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--fundo);
+}
+
+.card-title {
+  color: var(--azul);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.required-legend {
+  font-size: 0.8rem;
+  color: var(--texto-suave);
+}
+
+/* Estrutura dos Campos */
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.campo-grupo {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.label {
+  display: block;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--texto);
+  margin-bottom: 8px;
+}
+
+.required {
+  color: var(--vermelho);
+}
+
+/* Estilização dos Radio Buttons em formato de cartões interativos */
+.fieldset-tipo {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.radio-cards-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.radio-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  border: 2px solid var(--borda);
+  border-radius: var(--raio);
+  background-color: var(--branco);
+  cursor: pointer;
+  transition: var(--transicao);
+  user-select: none;
+}
+
+.radio-card:hover {
+  border-color: #9CA3AF;
+  background-color: #F9FAFB;
+}
+
+/* Oculta o input radio nativo visualmente mantendo acessibilidade */
+.radio-card input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.radio-custom {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--borda);
+  border-radius: 50%;
+  display: inline-grid;
+  place-items: center;
+  flex-shrink: 0;
+  transition: var(--transicao);
+}
+
+.radio-custom::after {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--branco);
+  transform: scale(0);
+  transition: transform 0.15s ease-in-out;
+}
+
+.radio-icon {
+  font-size: 1.25rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.radio-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.radio-text strong {
+  font-size: 0.95rem;
+  color: var(--texto);
+}
+
+.radio-text small {
+  font-size: 0.75rem;
+  color: var(--texto-suave);
+}
+
+/* Estado selecionado - Receita (Verde #16A34A) */
+.radio-card-receita input[type="radio"]:checked ~ .radio-custom {
+  border-color: var(--verde);
+  background-color: var(--verde);
+}
+
+.radio-card-receita input[type="radio"]:checked ~ .radio-custom::after {
+  transform: scale(1);
+}
+
+.radio-card-receita input[type="radio"]:checked ~ .radio-icon {
+  color: var(--verde);
+}
+
+.radio-card-receita:has(input[type="radio"]:checked) {
+  border-color: var(--verde);
+  background-color: var(--verde-claro);
+  box-shadow: 0 2px 8px rgba(22, 163, 74, 0.15);
+}
+
+/* Estado selecionado - Despesa (Vermelho #DC2626) */
+.radio-card-despesa input[type="radio"]:checked ~ .radio-custom {
+  border-color: var(--vermelho);
+  background-color: var(--vermelho);
+}
+
+.radio-card-despesa input[type="radio"]:checked ~ .radio-custom::after {
+  transform: scale(1);
+}
+
+.radio-card-despesa input[type="radio"]:checked ~ .radio-icon {
+  color: var(--vermelho);
+}
+
+.radio-card-despesa:has(input[type="radio"]:checked) {
+  border-color: var(--vermelho);
+  background-color: var(--vermelho-claro);
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.15);
+}
+
+.radio-card input[type="radio"]:focus-visible ~ .radio-custom {
+  outline: 3px solid var(--azul);
+  outline-offset: 2px;
+}
+
+/* Inputs de texto, número e data */
+.input-campo {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  color: var(--texto);
+  background-color: var(--branco);
+  border: 1.5px solid var(--borda);
+  border-radius: 10px;
+  outline: none;
+  transition: var(--transicao);
+}
+
+.input-campo:hover {
+  border-color: #9CA3AF;
+}
+
+.input-campo:focus {
+  border-color: var(--azul);
+  box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.15);
+}
+
+/* Wrapper do campo de Valor com prefixo 'R$' */
+.input-moeda-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.prefixo-moeda {
+  position: absolute;
+  left: 14px;
+  color: var(--texto-suave);
+  font-weight: 700;
+  font-size: 0.92rem;
+  pointer-events: none;
+}
+
+.input-com-prefixo {
+  padding-left: 42px;
+}
+
+/* Wrapper de Select com seta estilizada */
+.select-wrapper {
+  position: relative;
+}
+
+.select-campo {
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  padding-right: 40px;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236B7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 16px;
+}
+
+/* Linha com dois campos lado a lado */
+.linha-dupla {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* Mensagens de Erro em Vermelho (#DC2626) */
+.mensagem-erro {
+  display: none;
+  margin-top: 6px;
+  color: var(--vermelho);
+  font-size: 0.82rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.mensagem-erro.visivel {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  animation: fadeIn 0.2s ease-in;
+}
+
+.mensagem-erro.visivel::before {
+  content: "⚠";
+  font-size: 0.85rem;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-3px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Borda vermelha em campos com erro */
+.input-campo.invalido {
+  border-color: var(--vermelho) !important;
+  background-color: #FFF5F5;
+}
+
+.input-campo.invalido:focus {
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.2) !important;
+}
+
+.fieldset-tipo.invalido .radio-card {
+  border-color: var(--vermelho);
+}
+
+/* Ações e Botões do Formulário */
+.acoes-formulario {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 14px;
+  margin-top: 10px;
+  padding-top: 20px;
+  border-top: 1px solid var(--fundo);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  font-family: inherit;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: var(--transicao);
+  border: 2px solid transparent;
+}
+
+.btn-primario {
+  background-color: var(--azul);
+  color: var(--branco);
+}
+
+.btn-primario:hover {
+  background-color: var(--azul-escuro);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(30, 58, 138, 0.25);
+}
+
+.btn-primario:focus-visible {
+  outline: 3px solid var(--azul);
+  outline-offset: 2px;
+}
+
+.btn-secundario {
+  background-color: transparent;
+  color: var(--texto-suave);
+  border: 1.5px solid var(--borda);
+}
+
+.btn-secundario:hover {
+  background-color: #F9FAFB;
+  color: var(--texto);
+  border-color: #9CA3AF;
+}
+
+.btn-secundario:focus-visible {
+  outline: 3px solid var(--borda);
+  outline-offset: 2px;
+}
+
+/* Rodapé */
+.page-footer {
+  margin-top: 40px;
+  text-align: center;
+  color: var(--texto-suave);
+  font-size: 0.85rem;
+}
+
+/* Responsividade para telas menores (celulares e tablets) */
+@media (max-width: 640px) {
+  .app-container {
+    width: calc(100% - 24px);
+    padding: 24px 0 36px;
+  }
+
+  .card-formulario {
+    padding: 22px 18px;
+    border-radius: 14px;
+  }
+
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .btn-nav {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .radio-cards-container {
+    grid-template-columns: 1fr;
+  }
+
+  .linha-dupla {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .acoes-formulario {
+    flex-direction: column-reverse;
+    gap: 10px;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}

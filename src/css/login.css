@@ -1,0 +1,468 @@
+/* ==========================================================================
+   FinanCont - Estilos da Tela de Login
+   Arquivo: login.css
+   Estilo visual: Sistema financeiro, limpo, moderno e profissional
+   ========================================================================== */
+
+/* Importação da fonte Inter via Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* --------------------------------------------------------------------------
+   Variáveis de Cores e Configurações Globais
+   Cores definidas conforme requisitos:
+   - Azul principal: #1E3A8A
+   - Fundo da página: #F3F4F6
+   - Vermelho para erros: #DC2626
+   -------------------------------------------------------------------------- */
+:root {
+  --cor-primaria: #1E3A8A;           /* Azul principal da identidade */
+  --cor-primaria-hover: #172554;     /* Azul escuro para hover no botão */
+  --cor-primaria-foco: rgba(30, 58, 138, 0.2); /* Sombra suave de foco */
+  --cor-fundo: #F3F4F6;              /* Fundo geral da página */
+  --cor-erro: #DC2626;               /* Vermelho para mensagens e bordas de erro */
+  --cor-erro-fundo: #FEF2F2;         /* Fundo sutil do alerta de erro */
+  --cor-erro-borda: #FCA5A5;         /* Borda sutil do alerta de erro */
+  --cor-sucesso: #16A34A;            /* Verde para feedback positivo */
+  --cor-sucesso-fundo: #F0FDF4;      /* Fundo sutil de sucesso */
+  --cor-sucesso-borda: #BBF7D0;      /* Borda de sucesso */
+  
+  --cor-card: #FFFFFF;               /* Fundo branco do card */
+  --cor-texto-principal: #111827;    /* Texto de alto contraste */
+  --cor-texto-secundario: #4B5563;   /* Texto complementar */
+  --cor-texto-suave: #6B7280;        /* Textos de suporte e dicas */
+  --cor-borda: #E5E7EB;              /* Borda padrão de inputs e divisores */
+  --cor-borda-input: #D1D5DB;        /* Borda neutra de campos */
+  
+  --fonte-principal: 'Inter', Arial, sans-serif; /* Tipografia Inter / Arial */
+  
+  --sombra-card: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
+  --sombra-botao: 0 4px 12px rgba(30, 58, 138, 0.25);
+  --raio-borda: 12px;
+  --transicao-padrao: 0.2s ease-in-out;
+}
+
+/* --------------------------------------------------------------------------
+   Reset Básico e Tipografia
+   -------------------------------------------------------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: var(--fonte-principal);
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto-principal);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* --------------------------------------------------------------------------
+   Layout Centralizado (Flexbox Responsivo)
+   -------------------------------------------------------------------------- */
+.login-pagina {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 24px 16px;
+}
+
+/* --------------------------------------------------------------------------
+   Card de Login (Estilo Sistema Financeiro)
+   -------------------------------------------------------------------------- */
+.login-card {
+  width: 100%;
+  max-width: 440px;
+  background-color: var(--cor-card);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-borda);
+  padding: 40px 36px;
+  box-shadow: var(--sombra-card);
+}
+
+/* --------------------------------------------------------------------------
+   Cabeçalho do Login (Logo, Título e Subtítulo)
+   -------------------------------------------------------------------------- */
+.login-cabecalho {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.login-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  background-color: var(--cor-primaria);
+  color: #FFFFFF;
+  border-radius: 14px;
+  margin-bottom: 16px;
+  box-shadow: var(--sombra-botao);
+}
+
+.login-logo svg {
+  width: 30px;
+  height: 30px;
+}
+
+.login-cabecalho h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--cor-primaria);
+  letter-spacing: -0.025em;
+  margin-bottom: 6px;
+}
+
+.login-cabecalho p {
+  font-size: 0.925rem;
+  color: var(--cor-texto-secundario);
+}
+
+/* --------------------------------------------------------------------------
+   Caixa de Alerta Geral (Erro de Autenticação)
+   -------------------------------------------------------------------------- */
+.alerta-geral {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  transition: opacity var(--transicao-padrao);
+}
+
+.alerta-geral[hidden] {
+  display: none !important;
+}
+
+.alerta-erro {
+  background-color: var(--cor-erro-fundo);
+  border-color: var(--cor-erro-borda);
+  color: var(--cor-erro);
+}
+
+.alerta-erro svg {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+}
+
+/* Animação sutil de vibração para alertar erro */
+.shake-anim {
+  animation: shake 0.4s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
+}
+
+/* --------------------------------------------------------------------------
+   Dica de Demonstração / Credenciais de Teste
+   -------------------------------------------------------------------------- */
+.credenciais-demo {
+  background-color: #EFF6FF;
+  border: 1px solid #BFDBFE;
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin-bottom: 22px;
+  font-size: 0.815rem;
+  color: #1E40AF;
+  line-height: 1.45;
+}
+
+.credenciais-demo strong {
+  display: block;
+  margin-bottom: 2px;
+  color: var(--cor-primaria);
+}
+
+.credenciais-demo code {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 0.85rem;
+  color: #1E3A8A;
+}
+
+/* --------------------------------------------------------------------------
+   Formulário e Grupos de Campos
+   -------------------------------------------------------------------------- */
+.formulario-login {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.campo-grupo {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.campo-rotulo-linha {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.campo-grupo label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--cor-texto-principal);
+}
+
+/* Link visual "Esqueci minha senha" */
+.link-esqueci-senha {
+  font-size: 0.815rem;
+  font-weight: 500;
+  color: var(--cor-primaria);
+  text-decoration: none;
+  transition: color var(--transicao-padrao), text-decoration var(--transicao-padrao);
+}
+
+.link-esqueci-senha:hover,
+.link-esqueci-senha:focus-visible {
+  text-decoration: underline;
+  color: var(--cor-primaria-hover);
+}
+
+/* --------------------------------------------------------------------------
+   Campos de Entrada (Inputs)
+   -------------------------------------------------------------------------- */
+.campo-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.campo-input {
+  width: 100%;
+  height: 46px;
+  padding: 0 14px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: var(--cor-texto-principal);
+  background-color: #FFFFFF;
+  border: 1.5px solid var(--cor-borda-input);
+  border-radius: 8px;
+  outline: none;
+  transition: border-color var(--transicao-padrao), box-shadow var(--transicao-padrao);
+}
+
+.campo-input::placeholder {
+  color: var(--cor-texto-suave);
+  opacity: 0.8;
+}
+
+/* Estado de Foco */
+.campo-input:focus {
+  border-color: var(--cor-primaria);
+  box-shadow: 0 0 0 3px var(--cor-primaria-foco);
+}
+
+/* Estado de Erro no Campo */
+.campo-input.input-erro {
+  border-color: var(--cor-erro);
+  background-color: #FFFDFD;
+}
+
+.campo-input.input-erro:focus {
+  border-color: var(--cor-erro);
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.2);
+}
+
+/* Botão de alternar visibilidade da senha */
+.btn-toggle-senha {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: 6px;
+  color: var(--cor-texto-suave);
+  cursor: pointer;
+  border-radius: 6px;
+  transition: color var(--transicao-padrao);
+}
+
+.btn-toggle-senha:hover,
+.btn-toggle-senha:focus-visible {
+  color: var(--cor-primaria);
+  outline: 2px solid var(--cor-primaria);
+}
+
+.btn-toggle-senha svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* --------------------------------------------------------------------------
+   Mensagens de Erro Abaixo de Cada Campo
+   -------------------------------------------------------------------------- */
+.mensagem-erro {
+  display: block;
+  min-height: 18px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--cor-erro);
+  margin-top: 5px;
+}
+
+/* --------------------------------------------------------------------------
+   Botão Entrar
+   -------------------------------------------------------------------------- */
+.btn-entrar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  height: 48px;
+  margin-top: 6px;
+  background-color: var(--cor-primaria);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--sombra-botao);
+  transition: background-color var(--transicao-padrao), transform 0.15s ease, box-shadow var(--transicao-padrao);
+}
+
+.btn-entrar:hover {
+  background-color: var(--cor-primaria-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(30, 58, 138, 0.35);
+}
+
+.btn-entrar:active {
+  transform: translateY(0);
+}
+
+.btn-entrar:focus-visible {
+  outline: 3px solid #3B82F6;
+  outline-offset: 2px;
+}
+
+.btn-entrar:disabled {
+  opacity: 0.75;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Spinner de carregamento durante autenticação */
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #FFFFFF;
+  border-radius: 50%;
+  animation: girar 0.6s linear infinite;
+}
+
+@keyframes girar {
+  to { transform: rotate(360deg); }
+}
+
+/* --------------------------------------------------------------------------
+   Rodapé do Card e Navegação Auxiliar
+   -------------------------------------------------------------------------- */
+.login-rodape {
+  margin-top: 26px;
+  padding-top: 20px;
+  border-top: 1px solid var(--cor-borda);
+  text-align: center;
+}
+
+.link-voltar {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.875rem;
+  color: var(--cor-texto-secundario);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color var(--transicao-padrao);
+}
+
+.link-voltar:hover,
+.link-voltar:focus-visible {
+  color: var(--cor-primaria);
+  text-decoration: underline;
+}
+
+/* --------------------------------------------------------------------------
+   Avisos informativos dinâmicos (ex.: Esqueci minha senha)
+   -------------------------------------------------------------------------- */
+.toast-info {
+  margin-top: 16px;
+  padding: 10px 14px;
+  background-color: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  font-size: 0.815rem;
+  color: #334155;
+  text-align: center;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --------------------------------------------------------------------------
+   Responsividade (Mobile & Telas Menores)
+   -------------------------------------------------------------------------- */
+@media (max-width: 480px) {
+  .login-pagina {
+    padding: 16px 12px;
+    align-items: flex-start;
+  }
+
+  .login-card {
+    padding: 28px 20px;
+    border-radius: 10px;
+    box-shadow: none;
+    border-color: #E2E8F0;
+  }
+
+  .login-cabecalho h1 {
+    font-size: 1.35rem;
+  }
+
+  .login-cabecalho p {
+    font-size: 0.875rem;
+  }
+
+  .campo-input {
+    height: 44px;
+    font-size: 0.925rem;
+  }
+
+  .btn-entrar {
+    height: 46px;
+    font-size: 0.95rem;
+  }
+}
